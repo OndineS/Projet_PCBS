@@ -17,15 +17,19 @@ response_keys = [key_m, key_q]
 n_trial = 5 # Nombre de trials par bloc
 fixcross = stimuli.FixCross(size=(20, 20), line_width = 3) #Croix de fixation
 fixcross.preload()
-Blackscreen = stimuli.BlankScreen()
+Blankscreen = stimuli.BlankScreen()
 
 # Paramètres d'affichage du stimulus:
 square_dist = 200
 square_size = [20, 20]
+left_square = stimuli.Rectangle(square_size, position=[-square_dist, 0])
+left_square.preload()
+right_square = stimuli.Rectangle(square_size, position=[square_dist, 0])
+right_square.preload()
 
 # Paramètre de réponses: appuyer sur "M" si stimulus à droite / "Q" si stimulus à gauche
-trial_left = ["left", key_q, -square_dist, 0]
-trial_right = ["right", key_m, square_dist, 0]
+trial_left = ["left", key_q, left_square, 0]
+trial_right = ["right", key_m, right_square, 0]
 
 square_wait = 100 # Durée d'affichage du stimulus
 wait_duration = 1000 # Durée d'attente post-stimulus pour saisie utilisateur
@@ -59,8 +63,7 @@ for nblock in ["Bloc 1", "Bloc 2", "Bloc 3"]:
 			t = design.Trial()
 			t.set_factor("Position", where[0])
 			t.set_factor("Expected", where[1])
-			s = stimuli.Rectangle(square_size, position=[where[2], 0])
-			t.add_stimulus(s)
+			t.add_stimulus(where[2])
 
 			b.add_trial(t, copies=where[3])
 	b.shuffle_trials()
@@ -84,17 +87,18 @@ for block in exp.blocks:
 	user_device.wait()
 
 	for trial in block.trials:
-		show_time = random.randint(1000, 1800) # temps d'affichage de la croix de fixation avant présentation du stimulus
+		show_time = random.randint(1000,1800)
 		fixcross.present()
 		exp.clock.wait(show_time)
 
-		trial.stimuli[0].present() #affichage du stimulus
+		 #affichage du stimulus
+		trial.stimuli[0].present()
 		exp.clock.wait(square_wait)
-		Blackscreen.present()
+		Blankscreen.present()
 
 		button, rt = user_device.wait(keys = response_keys, duration = wait_duration)
 
 # Enregistrement des données obtenues:
-		exp.data.add([block.get_factor("Numéro du bloc"), show_time, trial.get_factor("Position"), trial.get_factor("Expected"), button, rt])
+		exp.data.add([block.get_factor("Numéro du bloc"), trial.get_factor("Position"), trial.get_factor("Expected"), button, rt])
 
 control.end()
