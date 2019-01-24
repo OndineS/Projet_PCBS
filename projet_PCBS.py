@@ -37,19 +37,20 @@ wait_duration = 1000
 
 ##################### INSTRUCTIONS #####################
 
-instructions = """Dans l'expérience suivante, un carré gris va apparaître dans la partie droite ou gauche de votre champ visuel, \n
-de part ou d'autre d'une croix centrale. \n
-Vous devez fixer la croix pendant toute la durée de l'essai.\n
-Appuyez sur la touche \"M\" si le carré apparaît à droite de la croix, et sur \"Q\" s'il apparaît à gauche.\n
+instructions = """Dans l'expérience suivante, un carré gris va apparaître dans la partie droite ou gauche de votre champ visuel, \n\
+de part ou d'autre d'une croix centrale. \n\
+Vous devez fixer la croix pendant toute la durée de l'essai.\n\
+Appuyez sur la touche \"M\" si le carré apparaît à droite de la croix, et sur \"Q\" s'il apparaît à gauche.\n\
 
 Appuyez sur n'importe quelle touche pour continuer."""
 
-instruction1 = "Veuillez positionner votre index droit sur la touche \"M\" et votre index gauche sur la touche \"Q\" \n Puis appuyez sur n'importe quelle touche pour commencer"
-instruction2 = "Veuillez positionner votre index gauche sur la touche \"M\" et votre index droit sur la touche \"Q\",
-Votre bras droit étant placé au-dessus de votre bras gauche, \n
+instruction1 = "Veuillez positionner votre index droit sur la touche \"M\" et votre index gauche sur la touche \"Q\" \n\
 Puis appuyez sur n'importe quelle touche pour commencer"
-instruction3 = "Veuillez positionner votre index gauche sur la touche \"M\" et votre index droit sur la touche \"Q\", \n
-Votre bras gauche étant placé au-dessus de votre bras droit, \n
+instruction2 = "Veuillez positionner votre index gauche sur la touche \"M\" et votre index droit sur la touche \"Q\" \n\
+Votre bras droit étant placé au-dessus de votre bras gauche, \n\
+Puis appuyez sur n'importe quelle touche pour commencer"
+instruction3 = "Veuillez positionner votre index gauche sur la touche \"M\" et votre index droit sur la touche \"Q\", \n\
+Votre bras gauche étant placé au-dessus de votre bras droit, \n\
 Puis appuyez sur n'importe quelle touche pour commencer"
 instructions_total = [instruction1, instruction2, instruction3]
 
