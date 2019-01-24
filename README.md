@@ -210,3 +210,12 @@ Le script pour faire fonctionner l'expérience utilise le module expyriment.
 	control.end()
 
 ## Conclusion
+
+Avant de commencer le cours, je n'avais pas la moindre connaissance en programmation informatique. Mon dernier contact avec la logique algorithmique remontait au lycée, au temps où nous écrivions des programmes de 10 lignes sur nos calculatrices Casio T35+ (une belle époque...). Il a donc fallu tout découvrir et tout assimiler, car pour moi, un python n'était rien d'autre qu'un nom vernaculaire désignant plusieurs espèces de serpents. Il est ainsi difficile de décrire en quelques lignes ce que j'ai appris durant cette UE: il me faudrait pour cela lister l'intégralité de ce que nous avons vu en cours, et tout ce que vous pouvez voir dans le contenu de ce projet.
+De plus, le début du semestre a été un peu difficile, car je n'ai pas pu suivre l'intégralité des cours de mise à niveau du mois de rentrée à cause de problèmes personnels, j'ai donc perdu énormément de temps à essayer de rattraper les fondamentaux que je n'avais pas, d'où mon manque d'activité en cours. Qui plus est, je dois apprendre Matlab pour mon stage du second semestre, j'ai donc d'abord songé à rendre le projet d'AE en Matlab pour m'entraîner, et j'ai commencé à suivre des openclassrooms, mais je n'ai pas eu assez de temps pour atteindre un niveau suffisant pour réaliser un programme complet.
+
+J'ai apprécié la structure des cours, et j'ai trouvé le système de slack très utile, mais pas optimisé, à plusieurs titres:
+- beaucoup de choses dans le channel #général, et donc, finalement, pas une grande structuration de la plateforme pourtant très bien conçue à cet égard
+- finalement assez peu d'utilisation de la part des étudiants MAIS cela s'explique par un grand problème du Cogmaster: l'interminable multiplication des plateformes de communication. Entre nos adresses mails, les intranets des différentes écoles / universités où nous prenons des cours, Schoology, les sites personnels de certains professeurs et/ou leurs dropbox, Slack... Tout est beaucoup trop dispersé pour que nous puissions tirer profit de toutes ces plateformes. Et cela finit par nuir à la bonne transmission des informations, car on ne sait plus trop où donner de la tête.
+
+J'aurais aimé pouvoir coder l'analyse des résultats de l'expérience réalisée dans ce projet et de les ploter, mais hélas, je n'en ai pas eu le temps.
