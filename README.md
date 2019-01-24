@@ -188,7 +188,7 @@ Le script pour faire fonctionner l'expérience utilise le module expyriment.
 
 		exp.add_block(b)
 
-	exp.data_variable_names = ["Bloc", "Position", "Expected", "Button", "RT" color:red, "Button2", "RT2"] # Variables à enregistrer à chaque essai
+	exp.data_variable_names = ["Bloc", "Position", "Expected", "Button", "RT"] # Variables à enregistrer à chaque essai
 
 	##################### PRESENTATION DE L'EXPERIENCE #####################
 
@@ -218,6 +218,21 @@ Le script pour faire fonctionner l'expérience utilise le module expyriment.
 			exp.data.add([block.get_factor("Numéro du bloc"), trial.get_factor("Position"), trial.get_factor("Expected"), button, rt]) # Exportation des données obtenues
 
 	control.end()
+
+Pour `projet_PCBS_bimanual.py`, quelques lignes ont été ajoutées à la place des trois dernières lignes de code de la première version:
+
+	user_device.clear()
+		button1, rt1 = user_device.wait(keys=response_keys,duration=wait_duration)
+		if ( button1 ):
+			button2, rt2 = user_device.wait(keys=response_keys, duration=(wait_duration-rt1))
+		if ( rt2 ):
+			rt2 += rt1
+		exp.data.add([block.get_factor("Numéro du bloc"), show_time, trial.get_factor("Position"), button1, rt1, button2, (rt2)])
+		button1 = 0
+		rt1 = 0
+		button2 = 0
+		rt2 = 0
+
 
 ## Conclusion 
 
