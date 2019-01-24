@@ -94,7 +94,8 @@ for block in exp.blocks:
 		fixcross.present()
 		exp.clock.wait(show_time)
 
-		trial.stimuli[0].present()
+		fixcross.present()
+		trial.stimuli[0].present(clear = False)
 		exp.clock.wait(square_displaytime)
 		Blankscreen.present()
 
