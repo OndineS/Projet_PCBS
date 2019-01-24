@@ -206,7 +206,7 @@ Le script pour faire fonctionner l'expérience utilise le module expyriment.
 
 			button, rt = user_device.wait(keys = response_keys, duration = wait_duration)
 
-			exp.data.add([block.get_factor("Numéro du bloc"), trial.get_factor("Position"), trial.get_factor("Expected"), 				button, rt]) # Exportation des données obtenues
+			exp.data.add([block.get_factor("Numéro du bloc"), trial.get_factor("Position"), trial.get_factor("Expected"), button, rt]) # Exportation des données obtenues
 
 	control.end()
 
