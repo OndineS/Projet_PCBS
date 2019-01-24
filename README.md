@@ -115,7 +115,6 @@ Le script pour faire fonctionner l'expérience utilise le module expyriment.
 	user_device = exp.keyboard
 
 	##################### INITIALISATION DES PARAMETRES #####################
-	# (Permet de modifier facilement le design expérimental si nécessaire)
 
 	key_m = 59
 	key_q = 97
@@ -143,19 +142,20 @@ Le script pour faire fonctionner l'expérience utilise le module expyriment.
 
 	##################### INSTRUCTIONS #####################
 
-	instructions = """Dans l'expérience suivante, un carré gris va apparaître dans la partie droite ou gauche de votre champ 		visuel,\n
-	de part ou d'autre d'une croix centrale. \n
-	Vous devez fixer la croix pendant toute la durée de l'essai.\n
-	Appuyez sur la touche \"M\" si le carré apparaît à droite de la croix, et sur \"Q\" s'il apparaît à gauche.\n
+	instructions = """Dans l'expérience suivante, un carré gris va apparaître dans la partie droite ou gauche de votre champ visuel, 	\n\
+	de part ou d'autre d'une croix centrale. \n\
+	Vous devez fixer la croix pendant toute la durée de l'essai.\n\
+	Appuyez sur la touche \"M\" si le carré apparaît à droite de la croix, et sur \"Q\" s'il apparaît à gauche.\n\
 
 	Appuyez sur n'importe quelle touche pour continuer."""
 
-	instruction1 = "Veuillez positionner votre index droit sur la touche \"M\" et votre index gauche sur la touche \"Q\" \n Puis 		appuyez sur n'importe quelle touche pour commencer"
-	instruction2 = "Veuillez positionner votre index gauche sur la touche \"M\" et votre index droit sur la touche \"Q\",
-	Votre bras droit étant placé au-dessus de votre bras gauche, \n
+	instruction1 = "Veuillez positionner votre index droit sur la touche \"M\" et votre index gauche sur la touche \"Q\" \n\
 	Puis appuyez sur n'importe quelle touche pour commencer"
-	instruction3 = "Veuillez positionner votre index gauche sur la touche \"M\" et votre index droit sur la touche \"Q\", \n
-	Votre bras gauche étant placé au-dessus de votre bras droit, \n
+	instruction2 = "Veuillez positionner votre index gauche sur la touche \"M\" et votre index droit sur la touche \"Q\" \n\
+	Votre bras droit étant placé au-dessus de votre bras gauche, \n\
+	Puis appuyez sur n'importe quelle touche pour commencer"
+	instruction3 = "Veuillez positionner votre index gauche sur la touche \"M\" et votre index droit sur la touche \"Q\", \n\
+	Votre bras gauche étant placé au-dessus de votre bras droit, \n\
 	Puis appuyez sur n'importe quelle touche pour commencer"
 	instructions_total = [instruction1, instruction2, instruction3]
 
@@ -199,7 +199,8 @@ Le script pour faire fonctionner l'expérience utilise le module expyriment.
 			fixcross.present()
 			exp.clock.wait(show_time)
 
-			trial.stimuli[0].present()
+			fixcross.present()
+			trial.stimuli[0].present(clear = False)
 			exp.clock.wait(square_displaytime)
 			Blankscreen.present()
 
@@ -214,8 +215,8 @@ Le script pour faire fonctionner l'expérience utilise le module expyriment.
 Avant de commencer le cours, je n'avais pas la moindre connaissance en programmation informatique. Mon dernier contact avec la logique algorithmique remontait au lycée, au temps où nous écrivions des programmes de 10 lignes sur nos calculatrices Casio T35+ (une belle époque...). Il a donc fallu tout découvrir et tout assimiler, car pour moi, un python n'était rien d'autre qu'un nom vernaculaire désignant plusieurs espèces de serpents. Il est ainsi difficile de décrire en quelques lignes ce que j'ai appris durant cette UE: il me faudrait pour cela lister l'intégralité de ce que nous avons vu en cours, et tout ce que vous pouvez voir dans le contenu de ce projet.
 De plus, le début du semestre a été un peu difficile, car je n'ai pas pu suivre l'intégralité des cours de mise à niveau du mois de rentrée à cause de problèmes personnels, j'ai donc perdu énormément de temps à essayer de rattraper les fondamentaux que je n'avais pas, d'où mon manque d'activité en cours. Qui plus est, je dois apprendre Matlab pour mon stage du second semestre, j'ai donc d'abord songé à rendre le projet d'AE en Matlab pour m'entraîner, et j'ai commencé à suivre des openclassrooms, mais je n'ai pas eu assez de temps pour atteindre un niveau suffisant pour réaliser un programme complet.
 
-J'ai apprécié la structure des cours, et j'ai trouvé le système de slack très utile, mais pas optimisé, à plusieurs titres:
+J'aurais aimé pouvoir coder l'analyse des résultats de l'expérience réalisée dans ce projet et de les ploter, mais hélas, je n'en ai pas eu le temps. Pour améliorer le code, j'aurais aussi pu créer un écran texte en cas d'échec de l'utilisateur à l'un des trials, ou bien laisser un temps de repos entre deux trials successifs comme cela était indiqué dans le protocole de l'article dont a été tirée cette expérience. Cependant, les quelques (rares) fois où j'ai passé des expériences de ce type en tant que sujet, les trials s'enchaînaient sans me donner d'indication sur ma réussite ou mon échec et sans me laisser de grand temps de pause, j'ai donc suivi cette habitude.
+
+Concernant mes retours sur l'UE, j'ai apprécié la structure des cours, et j'ai trouvé le système de Slack très utile, mais pas optimisé, à plusieurs titres:
 - beaucoup de choses dans le channel #général, et donc, finalement, pas une grande structuration de la plateforme pourtant très bien conçue à cet égard
 - finalement assez peu d'utilisation de la part des étudiants MAIS cela s'explique par un grand problème du Cogmaster: l'interminable multiplication des plateformes de communication. Entre nos adresses mails, les intranets des différentes écoles / universités où nous prenons des cours, Schoology, les sites personnels de certains professeurs et/ou leurs dropbox, Slack... Tout est beaucoup trop dispersé pour que nous puissions tirer profit de toutes ces plateformes. Et cela finit par nuir à la bonne transmission des informations, car on ne sait plus trop où donner de la tête.
-
-J'aurais aimé pouvoir coder l'analyse des résultats de l'expérience réalisée dans ce projet et de les ploter, mais hélas, je n'en ai pas eu le temps.
