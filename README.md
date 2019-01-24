@@ -10,14 +10,14 @@ L'expérience implique trois conditions: l'une où le sujet utilise la main ipsi
 Cette expérience est adaptée de l'article "Interhemispheric vs stimulus-response spatial compatibility effects in bimanual reaction times to lateralized visual stimuli" publié dans Frontiers in Psychology en 2013 par Pellicano&al. La différence principale est que, dans l'expérience codée ici, le sujet ne répond que d'une seule main au stimulus (comme précisé dans la description de projet proposée par M. Pallier) alors que dans l'expérience d'origine, il devait appuyer sur les deux touches simultanément, indépendament de la latéralisation du stimulus.
 
 **Tables des Matières**
-  * #Tâche de détection d'un stimulus visuel latéralisé et temps de réaction ipsi- et contro-latéral
+  * Tâche de détection d'un stimulus visuel latéralisé et temps de réaction ipsi- et contro-latéral
     * [Préparation des stimuli] (#stim)
     	* Croix de fixation (#fix)
-	* Stimulus visuel (cible) (#vis)
+        * Stimulus visuel (cible) (#vis)
     * [Design expérimental] (#exp)
     	* Création des trials (#tri)
-	* Création des blocs d'expérimentation (#bloc)
-	* Exportation des données (#data)
+        * Création des blocs d'expérimentation (#bloc)
+        * Exportation des données (#data)
     * [Expérience] (#expt)
     * [Conclusion] (#ccl)
 
