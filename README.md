@@ -6,8 +6,8 @@ L'objectif de ce projet était de créer en Python, en utilisant le module expyr
 
 Plus exactement, la tâche consiste en une succession d'essais durant lesquels un stimulus (carré gris clair) apparaît soit à droite, soit à gauche du champ visuel du sujet, de part ou d'autre de la croix de fixation centrale. 
 L'expérience a été déclinée en deux version: 
-	* La première version, `projet_PCBS.py` correspond à celle précisée par M. Pallier dans sa description de projet. Le sujet doit appuyer sur la touche "M" (située à droite du clavier) si le stimulus apparaît à droite, ou sur "Q" (située à gauche) si le stimulus apparaît à gauche. L'expérience implique trois conditions: l'une où le sujet utilise la main ipsilatérale au stimulus (il appuie sur les touches gauche et droite respectivement avec les index gauche et droit); et deux où le sujet croise les bras pour utiliser la main controlatérale au stimulus (il appuie sur les touches gauche et droite respectivement avec les index droit et gauche), avec le bras droit au-dessus du gauche puis l'inverse. Le programme enregistre la touche appuyée et le temps de réaction correspondant.
-	* La deuxième version, `projet_PCBS_bimanual.py`correspond plus directement à l'article *"Interhemispheric vs stimulus-response spatial compatibility effects in bimanual reaction times to lateralized visual stimuli"* publié dans Frontiers in Psychology en 2013 par Pellicano&al, et dont est tiré le projet. La différence avec la première version est qu'ici, le sujet répond en appuyant simultanément sur les deux touches du clavier, indépendamment de la latéralisation du stimulus. Les trois conditions sont les mêmes que précédemment (condition anatomique, et deux conditions bras croisés). Le programme enregistre alors quelle touche a été frappée en premier, le temps de réaction correspondant, la deuxième touche appuyée, et son temps de réaction.
+	* La première version, `Detection_task_simple.py` correspond à celle précisée par M. Pallier dans sa description de projet. Le sujet doit appuyer sur la touche "M" (située à droite du clavier) si le stimulus apparaît à droite, ou sur "Q" (située à gauche) si le stimulus apparaît à gauche. L'expérience implique trois conditions: l'une où le sujet utilise la main ipsilatérale au stimulus (il appuie sur les touches gauche et droite respectivement avec les index gauche et droit); et deux où le sujet croise les bras pour utiliser la main controlatérale au stimulus (il appuie sur les touches gauche et droite respectivement avec les index droit et gauche), avec le bras droit au-dessus du gauche puis l'inverse. Le programme enregistre la touche appuyée et le temps de réaction correspondant.
+	* La deuxième version, `Detection_task_bimanual.py`correspond plus directement à l'article *"Interhemispheric vs stimulus-response spatial compatibility effects in bimanual reaction times to lateralized visual stimuli"* publié dans Frontiers in Psychology en 2013 par Pellicano&al, et dont est tiré le projet. La différence avec la première version est qu'ici, le sujet répond en appuyant simultanément sur les deux touches du clavier, indépendamment de la latéralisation du stimulus. Les trois conditions sont les mêmes que précédemment (condition anatomique, et deux conditions bras croisés). Le programme enregistre alors quelle touche a été frappée en premier, le temps de réaction correspondant, la deuxième touche appuyée, et son temps de réaction.
 
 **Tables des Matières**
   * [Tâche de détection d'un stimulus visuel latéralisé et temps de réaction ipsi- et contro-latéral](https://github.com/OndineS/Projet_PCBS/blob/master/README.md#t%C3%A2che-de-d%C3%A9tection-dun-stimulus-visuel-lat%C3%A9ralis%C3%A9-et-temps-de-r%C3%A9action-ipsi--et-contro-lat%C3%A9ral)
@@ -68,7 +68,7 @@ Les valeurs assignées à key_m et key_q sont propres à Python, et sont les seu
 
 ### Création des blocs d'expérimentation 
 
-L'expérience est divisée en trois blocs similaires, dont la seule différence est la consigne donnée au sujet avant le début de l'expérience, concernant la manière dont il doit appuyer sur les touches en réponse aux stimuli.
+L'expérience est divisée en trois blocs similaires, dont la seule différence est la consigne donnée au sujet avant le début de l'expérience, concernant la manière dont il doit appuyer sur les touches en réponse aux stimuli (condition ipsi- ou controlatérale).
 Pour faciliter l'exportation des données, chaque bloc est identifié par un numéro de bloc. Par ailleurs, les paramètres principaux du bloc (nombre de trials, définition des stimuli, instructions à afficher) ont été programmés en amont afin qu'ils puissent être modifiés sans perturber le programme, et afin de faciliter la fluidité de la lecture des blocs et leur structuration. Par contre, si le nombre de trials est préprogrammé, le nombre de stimulus présentés à gauche / à droite est calculé à l'intérieur du bloc. Ici, on fait en sorte que si le nombre de trials à gauche et à droite soit le même (+1 à droite si le nombre total de trials est impair).
 
 	for nblock in ["Bloc 1", "Bloc 2", "Bloc 3"]:
@@ -92,11 +92,11 @@ Pour faciliter l'exportation des données, chaque bloc est identifié par un num
 ### Exportation des données
 
 Les noms des variables à enregistrer à chaque trial ont été définis lors de la création des blocs d'expérimentation.
-Pour `projet_PCBS.py`:
+Pour `Detection_task_simple.py`:
 
 	exp.data_variable_names = ["Bloc", "Position", "Expected", "Button", "RT"]
 
-Pour `projet_PCBS_bimanual.py`:
+Pour `Detection_task_bimanual.py`:
 
 	exp.data_variable_names = ["Bloc", "Position", "Bouton 1", "RT1", "Bouton 2", "RT2"]
 	
@@ -219,7 +219,7 @@ Le script pour faire fonctionner l'expérience utilise le module expyriment.
 
 	control.end()
 
-Pour `projet_PCBS_bimanual.py`, quelques lignes ont été ajoutées à la place des trois dernières lignes de code de la première version:
+Pour `Detection_task_bimanual.py`, quelques lignes ont été ajoutées à la place des trois dernières lignes de code de la première version:
 
 	user_device.clear()
 		button1, rt1 = user_device.wait(keys=response_keys,duration=wait_duration)
