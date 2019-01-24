@@ -11,19 +11,19 @@ Cette expérience est adaptée de l'article "Interhemispheric vs stimulus-respon
 
 **Tables des Matières**
   * #Tâche de détection d'un stimulus visuel latéralisé et temps de réaction ipsi- et contro-latéral
-    * [Préparation des stimuli]
-    	* Croix de fixation
-	* Stimulus visuel (cible)
-    * [Design expérimental]
-    	* Création des trials
-	* Création des blocs d'expérimentation
-	* Exportation des données
-    * [Expérience]
-    * [Conclusion]
+    * [Préparation des stimuli] (#stim)
+    	* Croix de fixation (#fix)
+	* Stimulus visuel (cible) (#vis)
+    * [Design expérimental] (#exp)
+    	* Création des trials (#tri)
+	* Création des blocs d'expérimentation (#bloc)
+	* Exportation des données (#data)
+    * [Expérience] (#expt)
+    * [Conclusion] (#ccl)
 
-## Préparation des stimuli
+## Préparation des stimuli <a name="stim"></a>
 
-### Croix de Fixation
+### Croix de Fixation <a name="fix"></a>
 La croix de fixation a été formatée et préchargée lors de la phase d'initialisation de l'expérience pour pouvoir être facilement modifiée et éviter d'éventuels temps de chargement lors de l'expérience. Elle a été crée en utilisant le module expyriment.
 
     fixcross = stimuli.FixCross(size=(20, 20), line_width = 3)
@@ -37,7 +37,7 @@ Par la suite, lors de la présentation de l'expérience, elle est affichée dura
 		     exp.clock.wait(show_time)
 
 
-### Stimulus visuel (cible)
+### Stimulus visuel (cible) <a name="vis"></a>
 
 Le stimulus visuel utilisé est un carré gris, de 20 pixels de côté, apparaîssant à 200 pixels à droite ou à gauche de la croix de fixation centrale. Comme pour la croix, ses caractéristiques sont définies lors de l'initialisation de l'expérience pour pouvoir être facilement modifiées ou adaptées, et il est également préchargé.
 
@@ -49,9 +49,9 @@ Le stimulus visuel utilisé est un carré gris, de 20 pixels de côté, apparaî
 	right_square.preload()
 	square_displaytime = 100
 
-## Design expérimental
+## Design expérimental <a name="exp"></a>
 
-### Création des trials
+### Création des trials <a name="tri"></a>
 
 Les deux types de trials (stimuli apparaissant au gauche ou à droite) ont également été initialisés en début d'expérience pour plus de fluidité.
 
@@ -66,7 +66,7 @@ De la même manière, les paramètres de réponse de l'utilisateur ont aussi ét
 	
 Les valeurs assignées à key_m et key_q sont propres à Python, et sont les seules valeurs permettant de conserver la mémoire de la touche appuyée par l'utilisateur dans le fichier d'exportation des données créé en fin d'expérience.
 
-### Création des blocs d'expérimentation
+### Création des blocs d'expérimentation <a name="bloc"></a>
 
 L'expérience est divisée en trois blocs similaires, dont la seule différence est la consigne donnée au sujet avant le début de l'expérience, concernant la manière dont il doit appuyer sur les touches en réponse aux stimuli.
 Pour faciliter l'exportation des données, chaque bloc est identifié par un numéro de bloc. Par ailleurs, les paramètres principaux du bloc (nombre de trials, définition des stimuli, instructions à afficher) ont été programmés en amont afin qu'ils puissent être modifiés sans perturber le programme, et afin de faciliter la fluidité de la lecture des blocs et leur structuration. Par contre, si le nombre de trials est préprogrammé, le nombre de stimulus présentés à gauche / à droite est calculé à l'intérieur du bloc.
@@ -89,7 +89,7 @@ Pour faciliter l'exportation des données, chaque bloc est identifié par un num
 
 	exp.add_block(b)
 
-### Exportation des données 
+### Exportation des données <a name="data"></a>
 
 Les noms des variables à enregistrer à chaque trial ont été définis lors de la création des blocs d'expérimentation.
 
@@ -99,7 +99,7 @@ A chaque trials, les données de ces variables sont enregistrées, et à la fin 
 
 	exp.data.add([block.get_factor("Numéro du bloc"), trial.get_factor("Position"), trial.get_factor("Expected"), button, rt])
 	
-## Expérience
+## Expérience <a name="expt"></a>
 
 Le script pour faire fonctionner l'expérience utilise le module expyriment.
 
@@ -209,7 +209,7 @@ Le script pour faire fonctionner l'expérience utilise le module expyriment.
 
 	control.end()
 
-## Conclusion
+## Conclusion <a name="ccl"></a>
 
 Avant de commencer le cours, je n'avais pas la moindre connaissance en programmation informatique. Mon dernier contact avec la logique algorithmique remontait au lycée, au temps où nous écrivions des programmes de 10 lignes sur nos calculatrices Casio T35+ (une belle époque...). Il a donc fallu tout découvrir et tout assimiler, car pour moi, un python n'était rien d'autre qu'un nom vernaculaire désignant plusieurs espèces de serpents. Il est ainsi difficile de décrire en quelques lignes ce que j'ai appris durant cette UE: il me faudrait pour cela lister l'intégralité de ce que nous avons vu en cours, et tout ce que vous pouvez voir dans le contenu de ce projet.
 De plus, le début du semestre a été un peu difficile, car je n'ai pas pu suivre l'intégralité des cours de mise à niveau du mois de rentrée à cause de problèmes personnels, j'ai donc perdu énormément de temps à essayer de rattraper les fondamentaux que je n'avais pas, d'où mon manque d'activité en cours. Qui plus est, je dois apprendre Matlab pour mon stage du second semestre, j'ai donc d'abord songé à rendre le projet d'AE en Matlab pour m'entraîner, et j'ai commencé à suivre des openclassrooms, mais je n'ai pas eu assez de temps pour atteindre un niveau suffisant pour réaliser un programme complet.
