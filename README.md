@@ -21,9 +21,9 @@ Cette expérience est adaptée de l'article "Interhemispheric vs stimulus-respon
     * [Expérience] (#expt)
     * [Conclusion] (#ccl)
 
-## Préparation des stimuli <a name="stim"></a>
+## Préparation des stimuli `<a name="stim"></a>`
 
-### Croix de Fixation <a name="fix"></a>
+### Croix de Fixation `<a name="fix"></a>`
 La croix de fixation a été formatée et préchargée lors de la phase d'initialisation de l'expérience pour pouvoir être facilement modifiée et éviter d'éventuels temps de chargement lors de l'expérience. Elle a été crée en utilisant le module expyriment.
 
     fixcross = stimuli.FixCross(size=(20, 20), line_width = 3)
