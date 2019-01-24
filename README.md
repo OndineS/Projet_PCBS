@@ -18,18 +18,26 @@ Cette expérience est adaptée de l'article "Interhemispheric vs stimulus-respon
 
 ## Préparation des stimuli
 
- ### Croix de Fixation
+### Croix de Fixation
 La croix de fixation a été formatée et préchargée lors de la phase d'initialisation de l'expérience pour pouvoir être facilement modifiée et éviter d'éventuels temps de chargement lors de l'expérience. Elle a été crée en utilisant le module expyriment.
 
-Par la suite, lors de l'expérience, elle est affichée durant un temps aléatoire compris entre 1000 et 1800ms. 
+    fixcross = stimuli.FixCross(size=(20, 20), line_width = 3)
+    fixcross.preload()
+
+Par la suite, lors de la présentation de l'expérience, elle est affichée durant un temps aléatoire compris entre 1000 et 1800ms. 
+
+    for trial in block.trials:
+		     show_time = random.randint(1000,1800)
+		     fixcross.present()
+		     exp.clock.wait(show_time)
 
 
- ### Stimulus visuel (cible)
+### Stimulus visuel (cible)
 
 Le stimulus visuel utilisé est un carré gris, de 20 pixels de côté, apparaîssant à 200 pixels à droite ou à gauche de la croix de fixation centrale, paramétré grâce au module expyriment. Comme pour la croix, ses caractéristiques sont définies lors de l'initialisation de l'expérience pour pouvoir être facilement modifiées ou adaptées, et il est également préchargé.
 
 ## Design expérimental
 
- ### Création des blocs d'expérimentation
+   ### Création des blocs d'expérimentation
 
 L'expérience est divisée en trois blocs similaires, dont la seule différence est la consigne donnée au sujet avant le début du bloc, concernant la manière dont il doit appuyer sur les touches en réponse aux stimuli.
