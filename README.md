@@ -4,10 +4,10 @@
 
 L'objectif de ce projet était de créer en Python, en utilisant le module expyriment, une expérience psychophysique permettant d'étudier le temps nécessaire à une information pour traverser les deux hémisphères cérébraux, en étudiant les temps de réaction des mains ipsi- et contro-latérale à un stimulus visuel latéralisé. 
 
-Plus exactement, la tâche consiste en une succession d'essais (100 par bloc) durant lesquels un stimulus (carré gris clair) apparaît soit à droite, soit à gauche du champ visuel du sujet, de part ou d'autre de la croix de fixation centrale. Le sujet doit appuyer sur la touche "M" (située à droite du clavier) si le stimulus apparaît à droite, ou sur "Q" (située à gauche) si le stimulus apparaît à gauche.
-L'expérience implique trois conditions: l'une où le sujet utilise la main ipsilatérale au stimulus (il appuie sur les touches gauche et droite respectivement avec les index gauche et droit); et deux où le sujet croise les bras pour utiliser la main controlatérale au stimulus (il appuie sur les touches gauche et droite respectivement avec les index droit et gauche), avec le bras droit au-dessus du gauche puis l'inverse.
-
-Cette expérience est adaptée de l'article "Interhemispheric vs stimulus-response spatial compatibility effects in bimanual reaction times to lateralized visual stimuli" publié dans Frontiers in Psychology en 2013 par Pellicano&al. La différence principale est que, dans l'expérience codée ici, le sujet ne répond que d'une seule main au stimulus (comme précisé dans la description de projet proposée par M. Pallier) alors que dans l'expérience d'origine, il devait appuyer sur les deux touches simultanément, indépendament de la latéralisation du stimulus.
+Plus exactement, la tâche consiste en une succession d'essais durant lesquels un stimulus (carré gris clair) apparaît soit à droite, soit à gauche du champ visuel du sujet, de part ou d'autre de la croix de fixation centrale. 
+L'expérience a été déclinée en deux version: 
+	* La première version, `projet_PCBS.py` correspond à celle précisée par M. Pallier dans sa description de projet. Le sujet doit appuyer sur la touche "M" (située à droite du clavier) si le stimulus apparaît à droite, ou sur "Q" (située à gauche) si le stimulus apparaît à gauche. L'expérience implique trois conditions: l'une où le sujet utilise la main ipsilatérale au stimulus (il appuie sur les touches gauche et droite respectivement avec les index gauche et droit); et deux où le sujet croise les bras pour utiliser la main controlatérale au stimulus (il appuie sur les touches gauche et droite respectivement avec les index droit et gauche), avec le bras droit au-dessus du gauche puis l'inverse. Le programme enregistre la touche appuyée et le temps de réaction correspondant.
+	* La deuxième version, `projet_PCBS_bimanual.py`correspond plus directement à l'article *"Interhemispheric vs stimulus-response spatial compatibility effects in bimanual reaction times to lateralized visual stimuli"* publié dans Frontiers in Psychology en 2013 par Pellicano&al, et dont est tiré le projet. La différence avec la première version est qu'ici, le sujet répond en appuyant simultanément sur les deux touches du clavier, indépendamment de la latéralisation du stimulus. Les trois conditions sont les mêmes que précédemment (condition anatomique, et deux conditions bras croisés). Le programme enregistre alors quelle touche a été frappée en premier, le temps de réaction correspondant, la deuxième touche appuyée, et son temps de réaction.
 
 **Tables des Matières**
   * [Tâche de détection d'un stimulus visuel latéralisé et temps de réaction ipsi- et contro-latéral](https://github.com/OndineS/Projet_PCBS/blob/master/README.md#t%C3%A2che-de-d%C3%A9tection-dun-stimulus-visuel-lat%C3%A9ralis%C3%A9-et-temps-de-r%C3%A9action-ipsi--et-contro-lat%C3%A9ral)
@@ -64,12 +64,12 @@ De la même manière, les paramètres de réponse de l'utilisateur ont aussi ét
 	key_q = 97
 	response_keys = [key_m, key_q]
 	
-Les valeurs assignées à key_m et key_q sont propres à Python, et sont les seules valeurs permettant de conserver la mémoire de la touche appuyée par l'utilisateur dans le fichier d'exportation des données créé en fin d'expérience.
+Les valeurs assignées à key_m et key_q sont propres à Python, et sont les seules valeurs permettant de conserver la mémoire de la touche appuyée par l'utilisateur dans le fichier d'exportation des données créé en fin d'expérience. Je n'ai pas pu trouver de moyen de contourner ce problème pour permettre un enregistrement direct de la valeur alphabétique (Q ou M) de la touche.
 
 ### Création des blocs d'expérimentation 
 
 L'expérience est divisée en trois blocs similaires, dont la seule différence est la consigne donnée au sujet avant le début de l'expérience, concernant la manière dont il doit appuyer sur les touches en réponse aux stimuli.
-Pour faciliter l'exportation des données, chaque bloc est identifié par un numéro de bloc. Par ailleurs, les paramètres principaux du bloc (nombre de trials, définition des stimuli, instructions à afficher) ont été programmés en amont afin qu'ils puissent être modifiés sans perturber le programme, et afin de faciliter la fluidité de la lecture des blocs et leur structuration. Par contre, si le nombre de trials est préprogrammé, le nombre de stimulus présentés à gauche / à droite est calculé à l'intérieur du bloc.
+Pour faciliter l'exportation des données, chaque bloc est identifié par un numéro de bloc. Par ailleurs, les paramètres principaux du bloc (nombre de trials, définition des stimuli, instructions à afficher) ont été programmés en amont afin qu'ils puissent être modifiés sans perturber le programme, et afin de faciliter la fluidité de la lecture des blocs et leur structuration. Par contre, si le nombre de trials est préprogrammé, le nombre de stimulus présentés à gauche / à droite est calculé à l'intérieur du bloc. Ici, on fait en sorte que si le nombre de trials à gauche et à droite soit le même (+1 à droite si le nombre total de trials est impair).
 
 	for nblock in ["Bloc 1", "Bloc 2", "Bloc 3"]:
 	b = design.Block()
@@ -92,12 +92,21 @@ Pour faciliter l'exportation des données, chaque bloc est identifié par un num
 ### Exportation des données
 
 Les noms des variables à enregistrer à chaque trial ont été définis lors de la création des blocs d'expérimentation.
+Pour `projet_PCBS.py`:
 
 	exp.data_variable_names = ["Bloc", "Position", "Expected", "Button", "RT"]
+
+Pour `projet_PCBS_bimanual.py`:
+
+	exp.data_variable_names = ["Bloc", "Position", "Bouton 1", "RT1", "Bouton 2", "RT2"]
 	
-A chaque trials, les données de ces variables sont enregistrées, et à la fin de l'expérience, un fichier .xpd contenant toutes les valeurs de ces variables pour tous les trials est exporté dans un dossier "data" créé au même emplacement que celui du programme expérimental.
+A chaque trial, les données de ces variables sont enregistrées, et à la fin de l'expérience, un fichier .xpd contenant toutes les valeurs de ces variables pour tous les trials est exporté dans un dossier "data" créé au même emplacement que celui du programme expérimental.
 
 	exp.data.add([block.get_factor("Numéro du bloc"), trial.get_factor("Position"), trial.get_factor("Expected"), button, rt])
+
+ou respectivement:
+
+	exp.data.add([block.get_factor("Numéro du bloc"), show_time, trial.get_factor("Position"), button1, rt1, button2, (rt2)])
 	
 ## Expérience 
 
@@ -179,7 +188,7 @@ Le script pour faire fonctionner l'expérience utilise le module expyriment.
 
 		exp.add_block(b)
 
-	exp.data_variable_names = ["Bloc", "Position", "Expected", "Button", "RT"] # Variables à enregistrer à chaque essai
+	exp.data_variable_names = ["Bloc", "Position", "Expected", "Button", "RT" color:red, "Button2", "RT2"] # Variables à enregistrer à chaque essai
 
 	##################### PRESENTATION DE L'EXPERIENCE #####################
 
