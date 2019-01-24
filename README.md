@@ -10,8 +10,8 @@ L'expérience implique trois conditions: l'une où le sujet utilise la main ipsi
 Cette expérience est adaptée de l'article "Interhemispheric vs stimulus-response spatial compatibility effects in bimanual reaction times to lateralized visual stimuli" publié dans Frontiers in Psychology en 2013 par Pellicano&al. La différence principale est que, dans l'expérience codée ici, le sujet ne répond que d'une seule main au stimulus (comme précisé dans la description de projet proposée par M. Pallier) alors que dans l'expérience d'origine, il devait appuyer sur les deux touches simultanément, indépendament de la latéralisation du stimulus.
 
 **Tables des Matières**
-  * Tâche de détection d'un stimulus visuel latéralisé et temps de réaction ipsi- et contro-latéral (https://github.com/OndineS/Projet_PCBS/blob/master/README.md#t%C3%A2che-de-d%C3%A9tection-dun-stimulus-visuel-lat%C3%A9ralis%C3%A9-et-temps-de-r%C3%A9action-ipsi--et-contro-lat%C3%A9ral)
-    * [Préparation des stimuli] ((https://github.com/OndineS/Projet_PCBS/blob/master/README.md#pr%C3%A9paration-des-stimul)
+  * [Tâche de détection d'un stimulus visuel latéralisé et temps de réaction ipsi- et contro-latéral] (https://github.com/OndineS/Projet_PCBS/blob/master/README.md#t%C3%A2che-de-d%C3%A9tection-dun-stimulus-visuel-lat%C3%A9ralis%C3%A9-et-temps-de-r%C3%A9action-ipsi--et-contro-lat%C3%A9ral)
+    * [Préparation des stimuli] ((https://github.com/OndineS/Projet_PCBS/blob/master/README.md#pr%C3%A9paration-des-stimuli)
     	* Croix de fixation (https://github.com/OndineS/Projet_PCBS/blob/master/README.md#croix-de-fixation)
         * Stimulus visuel (cible) (https://github.com/OndineS/Projet_PCBS/blob/master/README.md#stimulus-visuel-cible)
     * [Design expérimental] (https://github.com/OndineS/Projet_PCBS/blob/master/README.md#design-exp%C3%A9rimental)
