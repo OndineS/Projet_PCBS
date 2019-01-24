@@ -10,20 +10,20 @@ L'expérience implique trois conditions: l'une où le sujet utilise la main ipsi
 Cette expérience est adaptée de l'article "Interhemispheric vs stimulus-response spatial compatibility effects in bimanual reaction times to lateralized visual stimuli" publié dans Frontiers in Psychology en 2013 par Pellicano&al. La différence principale est que, dans l'expérience codée ici, le sujet ne répond que d'une seule main au stimulus (comme précisé dans la description de projet proposée par M. Pallier) alors que dans l'expérience d'origine, il devait appuyer sur les deux touches simultanément, indépendament de la latéralisation du stimulus.
 
 **Tables des Matières**
-  * Tâche de détection d'un stimulus visuel latéralisé et temps de réaction ipsi- et contro-latéral
-    * [Préparation des stimuli] (#stim)
-    	* Croix de fixation (#fix)
-        * Stimulus visuel (cible) (#vis)
-    * [Design expérimental] (#exp)
-    	* Création des trials (#tri)
-        * Création des blocs d'expérimentation (#bloc)
-        * Exportation des données (#data)
-    * [Expérience] (#expt)
-    * [Conclusion] (#ccl)
+  * Tâche de détection d'un stimulus visuel latéralisé et temps de réaction ipsi- et contro-latéral (https://github.com/OndineS/Projet_PCBS/blob/master/README.md#t%C3%A2che-de-d%C3%A9tection-dun-stimulus-visuel-lat%C3%A9ralis%C3%A9-et-temps-de-r%C3%A9action-ipsi--et-contro-lat%C3%A9ral)
+    * [Préparation des stimuli] ((https://github.com/OndineS/Projet_PCBS/blob/master/README.md#pr%C3%A9paration-des-stimul)
+    	* Croix de fixation (https://github.com/OndineS/Projet_PCBS/blob/master/README.md#croix-de-fixation)
+        * Stimulus visuel (cible) (https://github.com/OndineS/Projet_PCBS/blob/master/README.md#stimulus-visuel-cible)
+    * [Design expérimental] (https://github.com/OndineS/Projet_PCBS/blob/master/README.md#design-exp%C3%A9rimental)
+    	* Création des trials (https://github.com/OndineS/Projet_PCBS/blob/master/README.md#cr%C3%A9ation-des-trials)
+        * Création des blocs d'expérimentation (https://github.com/OndineS/Projet_PCBS/blob/master/README.md#cr%C3%A9ation-des-blocs-dexp%C3%A9rimentation)
+        * Exportation des données (https://github.com/OndineS/Projet_PCBS/blob/master/README.md#exportation-des-donn%C3%A9es)
+    * [Expérience] (https://github.com/OndineS/Projet_PCBS/blob/master/README.md#exp%C3%A9rience)
+    * [Conclusion] (https://github.com/OndineS/Projet_PCBS/blob/master/README.md#conclusion)
 
-## Préparation des stimuli
+## Préparation des stimuli 
 
-### Croix de Fixation
+### Croix de Fixation 
 La croix de fixation a été formatée et préchargée lors de la phase d'initialisation de l'expérience pour pouvoir être facilement modifiée et éviter d'éventuels temps de chargement lors de l'expérience. Elle a été crée en utilisant le module expyriment.
 
     fixcross = stimuli.FixCross(size=(20, 20), line_width = 3)
@@ -37,7 +37,7 @@ Par la suite, lors de la présentation de l'expérience, elle est affichée dura
 		     exp.clock.wait(show_time)
 
 
-### Stimulus visuel (cible)
+### Stimulus visuel (cible) 
 
 Le stimulus visuel utilisé est un carré gris, de 20 pixels de côté, apparaîssant à 200 pixels à droite ou à gauche de la croix de fixation centrale. Comme pour la croix, ses caractéristiques sont définies lors de l'initialisation de l'expérience pour pouvoir être facilement modifiées ou adaptées, et il est également préchargé.
 
@@ -99,7 +99,7 @@ A chaque trials, les données de ces variables sont enregistrées, et à la fin 
 
 	exp.data.add([block.get_factor("Numéro du bloc"), trial.get_factor("Position"), trial.get_factor("Expected"), button, rt])
 	
-## Expérience
+## Expérience 
 
 Le script pour faire fonctionner l'expérience utilise le module expyriment.
 
