@@ -8,7 +8,7 @@ Plus exactement, la tâche consiste en une succession d'essais durant lesquels u
 L'expérience a été déclinée en deux version: 
 
    * La première version, `Detection_task_simple.py` correspond à celle précisée par M. Pallier dans sa description de projet. Le sujet doit appuyer sur la touche "M" (située à droite du clavier) si le stimulus apparaît à droite, ou sur "Q" (située à gauche) si le stimulus apparaît à gauche. L'expérience implique trois conditions: l'une où le sujet utilise la main ipsilatérale au stimulus (il appuie sur les touches gauche et droite respectivement avec les index gauche et droit); et deux où le sujet croise les bras pour utiliser la main controlatérale au stimulus (il appuie sur les touches gauche et droite respectivement avec les index droit et gauche), avec le bras droit au-dessus du gauche puis l'inverse. Le programme enregistre la touche appuyée et le temps de réaction correspondant.
-   * La deuxième version, `Detection_task_bimanual.py`correspond plus directement à l'article *"Interhemispheric vs stimulus-response spatial compatibility effects in bimanual reaction times to lateralized visual stimuli"* publié dans Frontiers in Psychology en 2013 par Pellicano&al, et dont est tiré le projet. La différence avec la première version est qu'ici, le sujet répond en appuyant simultanément sur les deux touches du clavier, indépendamment de la latéralisation du stimulus. Les trois conditions sont les mêmes que précédemment (condition anatomique, et deux conditions bras croisés). Le programme enregistre alors quelle touche a été frappée en premier, le temps de réaction correspondant, la deuxième touche appuyée, et son temps de réaction.
+   * La deuxième version, `Detection_task_bimanual.py`correspond plus directement à l'article *"Interhemispheric vs stimulus-response spatial compatibility effects in bimanual reaction times to lateralized visual stimuli"* publié dans Frontiers in Psychology en 2013 par Pellicano&al, et dont est tiré le projet. La différence avec la première version est qu'ici, le sujet répond en appuyant simultanément sur les deux touches du clavier, indépendamment de la latéralisation du stimulus. Les trois conditions sont les mêmes que précédemment (condition anatomique, et deux conditions bras croisés). Le programme enregistre alors les temps de réaction pour chacune des deux touches frappées, et le document exporté contient une colonne "temps de réaction" pour la touche M et une pour la touche Q.
 
 **Tables des Matières**
   * [Tâche de détection d'un stimulus visuel latéralisé et temps de réaction ipsi- et contro-latéral](https://github.com/OndineS/Projet_PCBS/blob/master/README.md#t%C3%A2che-de-d%C3%A9tection-dun-stimulus-visuel-lat%C3%A9ralis%C3%A9-et-temps-de-r%C3%A9action-ipsi--et-contro-lat%C3%A9ral)
@@ -130,7 +130,7 @@ Le script pour faire fonctionner l'expérience utilise le module expyriment.
 	key_q = 97
 	response_keys = [key_m, key_q]
 
-	nb_trial = 5
+	nb_trial = 100
 	fixcross = stimuli.FixCross(size=(20, 20), line_width = 3)
 	fixcross.preload()
 	Blankscreen = stimuli.BlankScreen()
@@ -220,19 +220,29 @@ Le script pour faire fonctionner l'expérience utilise le module expyriment.
 
 	control.end()
 
-Pour `Detection_task_bimanual.py`, quelques lignes ont été ajoutées à la place des trois dernières lignes de code de la première version:
+Pour `Detection_task_bimanual.py`, quelques lignes ont été ajoutées à la place des trois dernières lignes de code de la première version, pour permettre l'enregistrement bimanuel et enregistrer le temps de réaction pour chaque touche.
 
 	user_device.clear()
 		button1, rt1 = user_device.wait(keys=response_keys,duration=wait_duration)
-		if ( button1 ):
+		if not ( button1 is None ):
 			button2, rt2 = user_device.wait(keys=response_keys, duration=(wait_duration-rt1))
-		if ( rt2 ):
+		
+		if not (button2 is None):
+			if button2 == button1:	# l'utilisateur a appuyé deux fois sur la même touche => on supprime la 2ème mesure
+				button2 = None
+				rt2 = None
+		if not ( rt2 is None ):		# il y a eu 2 frappes de touche donc le délai de la 2ème frappe est celle de la 1ère + le délai entre les 2 frappes
 			rt2 += rt1
-		exp.data.add([block.get_factor("Numéro du bloc"), show_time, trial.get_factor("Position"), button1, rt1, button2, (rt2)])
-		button1 = 0
-		rt1 = 0
-		button2 = 0
-		rt2 = 0
+		# On trie les réponses en fonction du code caractère pour avoir toujours le caractère "M" en 1ère colonne
+		if not (button1 is None ) and ( button1 == key_q ) :
+			exp.data.add([block.get_factor("Numéro du bloc"), show_time, trial.get_factor("Position"), button2, rt2, button1, rt1])
+		else:
+			exp.data.add([block.get_factor("Numéro du bloc"), show_time, trial.get_factor("Position"), button1, rt1, button2, rt2])
+		# On réinitialise les variables pour la boucle suivante
+		button1 = None
+		rt1 = None
+		button2 = None
+		rt2 = None
 
 
 ## Conclusion 
