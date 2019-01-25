@@ -40,7 +40,7 @@ wait_duration = 1000
 instructions = """Dans l'expérience suivante, un carré gris va apparaître dans la partie droite ou gauche de votre champ visuel, \n\
 de part ou d'autre d'une croix centrale. \n\
 Vous devez fixer la croix pendant toute la durée de l'essai.\n\
-Appuyez simultanément sur les touches \"M\" et \"Q\" du clavier dès que vous voyez le stimulus, quel que soit sa localisation. \n\
+Appuyez simultanément sur les touches \"M\" et \"Q\" du clavier dès que vous voyez le stimulus, quelle que soit sa localisation. \n\
 
 Appuyez sur n'importe quelle touche pour continuer."""
 
@@ -101,14 +101,24 @@ for block in exp.blocks:
 
 		user_device.clear()
 		button1, rt1 = user_device.wait(keys=response_keys,duration=wait_duration)
-		if ( button1 ):
+		if not ( button1 is None ):
 			button2, rt2 = user_device.wait(keys=response_keys, duration=(wait_duration-rt1))
-		if ( rt2 ):
+# On stocke les paramètres de l'essai après avoir normalisé les données
+		if not (button2 is None):
+			if button2 == button1:	# l'utilisateur a appuyé deux fois sur la même touche => on supprime la 2ème mesure
+				button2 = None
+				rt2 = None
+		if not ( rt2 is None ):		# il y a eu 2 frappes de touche donc le délai de la 2ème frappe est celle de la 1ère + le délai entre les 2 frappes
 			rt2 += rt1
-		exp.data.add([block.get_factor("Numéro du bloc"), show_time, trial.get_factor("Position"), button1, rt1, button2, (rt2)])
-		button1 = 0
-		rt1 = 0
-		button2 = 0
-		rt2 = 0
+# On trie les réponses en fonction du code caractère pour avoir toujours le caractère "M" en 1ère colonne
+		if not (button1 is None ) and ( button1 == key_q ) :
+			exp.data.add([block.get_factor("Numéro du bloc"), show_time, trial.get_factor("Position"), button2, rt2, button1, rt1])
+		else:
+			exp.data.add([block.get_factor("Numéro du bloc"), show_time, trial.get_factor("Position"), button1, rt1, button2, rt2])
+# On réinitialise les variables pour la boucle suivante
+		button1 = None
+		rt1 = None
+		button2 = None
+		rt2 = None
 
 control.end()
